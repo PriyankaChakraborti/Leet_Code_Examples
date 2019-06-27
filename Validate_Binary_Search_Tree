@@ -1,0 +1,24 @@
+def isValid(root):
+	# For provided root checks values of left child and right child
+	if root.left and root.right:
+		left_child_val=root.left.val
+		right_child_val=root.right.val
+		temp=left_child_val<root.val<right_child_val
+		return temp
+	else:
+		temp='nan'
+		return temp
+
+# Now check to see if the right child, if exists, is larger 
+
+def check_tree(root):
+	if root:
+		check_tree(root.right)
+		check_tree(root.left)
+		boolean.append(isValid(root))
+
+	#temp=[item for item in boolean if item!='nan']
+	if all([item == True for item in [item for item in boolean if item!='nan']]):
+		return True
+	else:
+		return False
