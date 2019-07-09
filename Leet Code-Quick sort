@@ -1,0 +1,19 @@
+class Solution(object):
+    def quick_sort_in_place(self,sort_list,begin,end):
+        def partition(sort_list, begin, end):
+            pivot=sort_list[end]
+            wall=begin-1 # wall always trails 1 behind
+            for j in range(begin,end):
+                if sort_list[j]<=pivot:
+                    wall+=1
+                    sort_list[wall], sort_list[j] = sort_list[j], sort_list[wall]#swap with itself/any other
+            #once you exit the loop gives you the index where wall stopped.swap pivot with this index
+            sort_list[wall+1], sort_list[end] = sort_list[end], sort_list[wall+1]
+            return wall+1
+        
+        #now recurse over list
+        if begin<end:
+            pi = partition(sort_list, begin, end)
+            self.quick_sort_in_place(sort_list, begin, pi-1)
+            self.quick_sort_in_place(sort_list, pi+1, end)
+            return sort_list
